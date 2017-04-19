@@ -1,19 +1,25 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+'use strict';
 
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  Button
-} from 'react-native';
+import { AppRegistry } from 'react-native';
+import { createStore, combineReducers } from 'redux';
+import { routerReducer } from 'react-native-redux-router';
+import { Provider } from 'react-redux';
+import App from './components/App';
+
+let store = createStore(combineReducers({routerReducer}));
 
 export default class QarSyncManager extends Component {
+  render() {
+    return (
+        <Provider store={store}>
+            <App />
+        </Provider>
+    );
+  }
+}
+
+/*export default class QarSyncManager extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -27,36 +33,9 @@ export default class QarSyncManager extends Component {
           Double tap R on your keyboard to reload,{'\n'}
           Shake or press menu button for dev menu
         </Text>
-        <Button
-          title="Learn More"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
-        />
       </View>
     );
   }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  btn: {
-    backgroundColor: '#eee',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+}*/
 
 AppRegistry.registerComponent('QarSyncManager', () => QarSyncManager);
